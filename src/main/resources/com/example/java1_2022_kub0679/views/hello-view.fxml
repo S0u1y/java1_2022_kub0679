@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Point3D?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.java1_2022_kub0679.HelloController">
+   <center>
+      <AnchorPane fx:id="centerHolder" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyUpped" prefHeight="259.0" prefWidth="345.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="collectionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="345.0">
+               <children>
+                  <ImageView fx:id="backGround" fitHeight="259.0" fitWidth="346.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/119_UpgradeVisuals_BACKGROUND_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="scoreBoard" fitHeight="22.0" fitWidth="345.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/92_states.PlayState_scoreboardImg.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="coinsText" fill="#ebd987" layoutX="180.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins: ">
+                     <font>
+                        <Font name="SansSerif Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="scoreText" fill="#6bb94d" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: ">
+                     <font>
+                        <Font name="SansSerif Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="pauseScreen" fitHeight="150.0" fitWidth="200.0" layoutX="123.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/pauseScreen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="skillImage" fitHeight="83.0" fitWidth="51.0" layoutX="-2.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/meteorDestruction.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="gameOverPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="345.0" visible="false">
+               <children>
+                  <ImageView fx:id="backGround1" fitHeight="259.0" fitWidth="346.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gameOverScreen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="73.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gameOverStats.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="71.0" layoutX="88.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gameOverCup.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="14.0" width="32.0" />
+                     </viewport>
+                  </ImageView>
+                  <Text fx:id="currentScoreText" layoutX="128.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: ">
+                     <font>
+                        <Font name="SansSerif Bold" size="10.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="highScoreText" fill="RED" layoutX="128.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HighScore:" wrappingWidth="62.0078125">
+                     <font>
+                        <Font name="SansSerif Bold" size="10.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="14.0" layoutY="218.0" mnemonicParsing="false" onAction="#playGameButton" style="-fx-background-color: yellow;" text="Play Again" />
+                  <Button layoutX="142.0" layoutY="218.0" mnemonicParsing="false" onAction="#upgradeButton" style="-fx-background-color: yellow;" text="Upgrade" />
+                  <Button layoutX="254.0" layoutY="218.0" mnemonicParsing="false" onAction="#mainMenuButton" style="-fx-background-color: yellow;" text="Main Menu" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="mainMenuPane" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="345.0" visible="false">
+               <children>
+                  <ImageView fx:id="backGround11" fitHeight="259.0" fitWidth="346.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mainMenuBackground.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="154.0" layoutY="218.0" mnemonicParsing="false" onAction="#playGameButton" style="-fx-background-color: yellow;" text="Play" />
+                  <Button layoutX="142.0" layoutY="187.0" mnemonicParsing="false" onAction="#upgradeButton" style="-fx-background-color: yellow;" text="Upgrade" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="upgradeShop" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="345.0" visible="false">
+               <children>
+                  <ImageView fitHeight="259.0" fitWidth="346.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gameOverScreen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="77.0" fitWidth="345.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/upgradeBanner.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="nextMenu" fitHeight="16.0" fitWidth="16.0" layoutX="308.0" layoutY="122.0" onMouseClicked="#onMousePressedNext" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/upgradeNextButton.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="16.0" width="16.0" />
+                     </viewport>
+                  </ImageView>
+                  <Label fx:id="coinsOwned" ellipsisString="" layoutX="270.0" layoutY="-8.0" prefHeight="32.0" prefWidth="75.0" style="-fx-text-overrun: none;" textFill="#25722e" textOverrun="CLIP">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="statsUpgrade" layoutX="73.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <ImageView fx:id="speedUpgradeMeter" fitHeight="39.0" fitWidth="200.0" layoutX="42.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/upgradeStateMeter.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="16.0" width="48.0" />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="jumpUpgradeMeter" fitHeight="39.0" fitWidth="200.0" layoutX="42.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/upgradeStateMeter.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="16.0" width="48.0" />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="nextSpeed" fitHeight="16.0" fitWidth="16.0" layoutX="170.0" layoutY="35.0" onMouseClicked="#onMousePressedNext" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/upgradeNextButton.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="16.0" width="16.0" />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="prevSpeed" fitHeight="16.0" fitWidth="16.0" layoutX="14.0" layoutY="35.0" onMouseClicked="#onMousePressedNext" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@../images/upgradeNextButton.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="16.0" width="16.0" />
+                           </viewport>
+                           <rotationAxis>
+                              <Point3D y="1.0" />
+                           </rotationAxis>
+                        </ImageView>
+                        <ImageView fx:id="nextJump" fitHeight="16.0" fitWidth="16.0" layoutX="170.0" layoutY="127.0" onMouseClicked="#onMousePressedNext" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/upgradeNextButton.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="16.0" width="16.0" />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="prevJump" fitHeight="16.0" fitWidth="16.0" layoutX="14.0" layoutY="127.0" onMouseClicked="#onMousePressedNext" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@../images/upgradeNextButton.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="16.0" width="16.0" />
+                           </viewport>
+                           <rotationAxis>
+                              <Point3D y="1.0" />
+                           </rotationAxis>
+                        </ImageView>
+                        <Button fx:id="speed" layoutX="68.0" layoutY="68.0" mnemonicParsing="false" onAction="#onPurchaseButton" style="-fx-background-color: yellow;" text="Purchase" />
+                        <Button fx:id="jump" layoutX="68.0" layoutY="161.0" mnemonicParsing="false" onAction="#onPurchaseButton" style="-fx-background-color: yellow;" text="Purchase" />
+                        <Label fx:id="speedUpgradeText" alignment="CENTER" layoutX="47.0" layoutY="6.0" prefHeight="17.0" prefWidth="112.0" text="Label" />
+                        <Label fx:id="jumpUpgradeText" alignment="CENTER" layoutX="37.0" layoutY="100.0" prefHeight="17.0" prefWidth="131.0" text="Label" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="skillsUpgrade" layoutX="73.0" layoutY="38.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="speedUpgradeMeter1" fitHeight="39.0" fitWidth="200.0" layoutX="81.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/meteorDestruction.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <Button fx:id="meteorDestruction" layoutX="68.0" layoutY="174.0" mnemonicParsing="false" onAction="#onPurchaseButton" style="-fx-background-color: yellow;" text="Purchase" />
+                        <Label fx:id="speedUpgradeText1" alignment="CENTER" layoutX="44.0" layoutY="114.0" prefHeight="17.0" prefWidth="112.0" text="Meteor destruction" textFill="#fff2b8" />
+                        <Text fill="WHITE" layoutX="20.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destroy all meteors on screen!" textAlignment="CENTER" />
+                        <Text fill="WHITE" layoutX="75.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 750" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="4.0" layoutY="226.0" mnemonicParsing="false" onAction="#playGameButton" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: yellow;" text="Play" />
+                  <Button layoutX="254.0" layoutY="225.0" mnemonicParsing="false" onAction="#mainMenuButton" style="-fx-background-color: yellow;" text="Main Menu" />
+                  <ImageView fx:id="prevMenu" fitHeight="16.0" fitWidth="16.0" layoutX="22.0" layoutY="122.0" onMouseClicked="#onMousePressedNext" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../images/upgradeNextButton.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="16.0" width="16.0" />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
