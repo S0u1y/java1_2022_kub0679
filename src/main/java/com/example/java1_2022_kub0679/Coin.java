@@ -3,25 +3,19 @@ package com.example.java1_2022_kub0679;
 import javafx.animation.Animation;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class Coin extends FallingObject{
-
-    private final Image COIN_IMAGE = new Image(getClass().getResource("images/88_fall.Coin_coinImg.png").toString());
-
-    private final Sound pickupSound = new Sound("coinPickup.mp3");
-
     private int count = 16;
     private double speed = 75;
 
-    private double value = 1;
+    private int value = 1;
 
     public Coin(Game game, Pane pane){
         super(game);
-        this.image = new ImageView(COIN_IMAGE);
+        this.image = new ImageView(Resources.COIN_IMAGE);
         pane.getChildren().add(1,this.image);
         construct();
     }
@@ -40,7 +34,7 @@ public class Coin extends FallingObject{
     public void hit(Collidable another) {
         if(hasHit) return;
         if(another instanceof Player){
-            pickupSound.playSound();
+            Resources.PICKUPSOUND.playSound();
             setLookVector(new Point2D(0,-25));
             animation.stop();
             animation.setStartAt(9);
@@ -52,11 +46,11 @@ public class Coin extends FallingObject{
 
 
 
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 }

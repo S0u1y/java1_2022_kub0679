@@ -11,8 +11,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HelloController {
 
@@ -71,24 +74,23 @@ public class HelloController {
 
     private AnimationTimer animationTimer;
 
-    private Sound gameOverMusic = new Sound("gameOverMusic.mp3", MediaPlayer.INDEFINITE);
-    private Sound mainMenuMusic = new Sound("mainMenuMusic.mp3", MediaPlayer.INDEFINITE);
-    private Sound dayMusic = new Sound("BaseGameMusic.mp3", MediaPlayer.INDEFINITE);
-    private Sound upgradeMusic = new Sound("upgradeMusic.mp3", MediaPlayer.INDEFINITE);
     private Sound currentSong;
-    private Sound[] songs = new Sound[]{
-      gameOverMusic,mainMenuMusic,dayMusic,upgradeMusic,
-    };
 
     private long lastTime;
+
+    private double startTime;
+    private double endTime;
+
     public void startGame(){
+
+        startTime = System.currentTimeMillis();
 
         upgradeMenus = new AnchorPane[]{
                 statsUpgrade,skillsUpgrade,
         };
 
-        playOnlySound(mainMenuMusic);
-        currentSong = mainMenuMusic;
+        playOnlySound(Resources.MAINMENUMUSIC);
+        currentSong = Resources.MAINMENUMUSIC;
         game = new Game(this);
         game.setState(Game.Status.MAINMENU);
         showOnlyScreen(mainMenuPane);
@@ -109,7 +111,7 @@ public class HelloController {
 
 
         game.setGameListener((valueName, value) -> {
-            if(value instanceof Double val){
+            if(value instanceof Integer val){
                 switch(valueName){
                     case "score":{
 
@@ -147,8 +149,8 @@ public class HelloController {
                     }
                     case "playerDeath" :{
 
-                        dayMusic.stopSound();
-                        gameOverMusic.playSound();
+                        Resources.DAYMUSIC.stopSound();
+                        Resources.GAMEOVERMUSIC.playSound();
 
                         Score score = game.getScore();
 
@@ -174,8 +176,32 @@ public class HelloController {
             }
         });
 
-    }//create a drawing thread so we can make player move in it on its own :)
+    }
 
+    public void endGame(){
+
+        double highScore = game.getScore().getBestScore();
+        if(highScore > 0){
+            endTime = System.currentTimeMillis();
+            double totalSecs = (endTime - startTime)/1000;
+            int hours = (int) (totalSecs/3600);
+            int minutes = (int) ((totalSecs%3600)/60);
+            int seconds = (int) (totalSecs%60);
+
+            String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
+
+            try(PrintWriter pw = new PrintWriter(new FileWriter("data.csv", true))) {
+
+                pw.printf("%d;%s\n", (int)highScore, timeString);
+
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+
+    }
 
     public Text getCurrentScoreText() {
         return currentScoreText;
@@ -238,7 +264,7 @@ public class HelloController {
     @FXML
     private void playGameButton(){
         showOnlyScreen(collectionPane);
-        playOnlySound(dayMusic);
+        playOnlySound(Resources.DAYMUSIC);
         animationTimer.start();
         game.beginCollection();
     }
@@ -250,7 +276,7 @@ public class HelloController {
     private void upgradeButton(){
         game.setState(Game.Status.SHOPPING);
         showOnlyScreen(upgradeShop);
-        playOnlySound(upgradeMusic);
+        playOnlySound(Resources.UPGRADEMUSIC);
 
         speedIndex = (int)(game.getUpgrades().getSpeed() - 1) ;
         jumpIndex = (int)(game.getUpgrades().getJumpPower() -1);
@@ -263,7 +289,7 @@ public class HelloController {
 
     @FXML
     private void mainMenuButton(){
-        playOnlySound(mainMenuMusic);
+        playOnlySound(Resources.MAINMENUMUSIC);
         showOnlyScreen(mainMenuPane);
         game.setState(Game.Status.MAINMENU);
     }
@@ -406,7 +432,7 @@ public class HelloController {
             sound.playSound();
             currentSong = sound;
         }
-        for(Sound song : songs){
+        for(Sound song : Resources.MENUSONGS){
             if(song != sound){
                 song.stopSound();
             }

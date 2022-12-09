@@ -22,11 +22,11 @@ public class Game {
     private GameEvent gameListener = new EmptyGameEvent();
 
 
-    public void addCoins(double coins){
+    public void addCoins(int coins){
         score.setCurrentCoins(score.getCurrentCoins() + coins);
     }
 
-    public void addScore(double score){this.score.setCurrentScore(this.score.getCurrentScore() + score);}
+    public void addScore(int score){this.score.setCurrentScore(this.score.getCurrentScore() + score);}
 
     public Score getScore(){return score;}
 

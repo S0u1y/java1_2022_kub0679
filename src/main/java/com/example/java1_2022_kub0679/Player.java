@@ -3,18 +3,12 @@ package com.example.java1_2022_kub0679;
 import javafx.animation.Animation;
 import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 
 public class Player extends GameEntity{
-
-    private final Image PLAYER_IMAGE = new Image(getClass().getResource("images/playerImg.png").toString());
-    private Sound jumpSound = new Sound("playerJump.mp3");
-    private Sound useSkillSound = new Sound("skillUseSound.mp3");
-
     private int count = 4;
     private double speed = 75;
     private double jumpPower = -25;
@@ -23,7 +17,7 @@ public class Player extends GameEntity{
     private GameEvent deathEvent = new EmptyGameEvent();
     public Player(Game game, Pane pane) {
         super(game);
-        this.image = new ImageView(PLAYER_IMAGE);
+        this.image = new ImageView(Resources.PLAYER_IMAGE);
         pane.getChildren().add(1,image);
 
         construct();
@@ -44,7 +38,7 @@ public class Player extends GameEntity{
 
     public void jump(){
         if(!isFalling()){
-            jumpSound.playSound();
+            Resources.JUMPSOUND.playSound();
             lookVector = lookVector.add(new Point2D(0, jumpPower));
             setStatus(Status.JUMPING);
             setStatus(Status.FALLING);
@@ -103,7 +97,7 @@ public class Player extends GameEntity{
     }
 
     public void setSkillCooldown(long skillCooldown) {
-        useSkillSound.playSound();
+        Resources.USESKILLSOUND.playSound();
         this.skillCooldown = skillCooldown;
     }
 

@@ -3,7 +3,6 @@ package com.example.java1_2022_kub0679;
 import javafx.animation.Animation;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -11,26 +10,11 @@ import javafx.util.Duration;
 import java.util.random.RandomGenerator;
 
 public class Meteorite extends FallingObject{
-
-    private final Image METEORITE_IMAGE = new Image(getClass().getResource("images/meteor.png").toString());
-    private final Image METEORITE_IMAGE2 = new Image(getClass().getResource("images/meteor2.png").toString());
-    private final Image METEORITE_IMAGE3 = new Image(getClass().getResource("images/meteor3.png").toString());
-
-    private final Image[] IMAGES = new Image[]{
-            METEORITE_IMAGE,
-            METEORITE_IMAGE2,
-            METEORITE_IMAGE3
-    };
-
-    private Sound hitSound = new Sound("meteorHit.mp3");
-
     private int count = 8;
-
-
 
     Meteorite(Game game, Pane pane) {
         super(game);
-        this.image = new ImageView(IMAGES[RandomGenerator.getDefault().nextInt(0,2)]);
+        this.image = new ImageView(Resources.METEOR_IMAGES[RandomGenerator.getDefault().nextInt(0,2)]);
         pane.getChildren().add(1,this.image);
         construct();
     }
@@ -49,7 +33,7 @@ public class Meteorite extends FallingObject{
     public void hit(Collidable another) {
         if(hasHit) return;
         if(another instanceof Player){
-            hitSound.playSound();
+            Resources.METEORHITSOUND.playSound();
             setLookVector(new Point2D(0,-25));
             animation.stop();
             animation.setStartAt(4);

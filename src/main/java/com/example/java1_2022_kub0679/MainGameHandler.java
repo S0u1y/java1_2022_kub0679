@@ -77,30 +77,24 @@ public class MainGameHandler{
         entities.add(newMeteor);
     }
 
-    private int maxCoinInterval = 120;
-    private int coinInterval = maxCoinInterval;
-    private int timeCoin = 0;
+    private double maxCoinInterval = 2000;
+    private double coinInterval = System.currentTimeMillis() + maxCoinInterval;
 
-    private int maxMeteoriteInterval = 60;
-    private int meteoriteInterval = maxMeteoriteInterval;
-    private int timeMeteor = 0;
+    private double maxMeteoriteInterval = 1000;
+    private double meteoriteInterval = System.currentTimeMillis() + maxMeteoriteInterval;
 
     public void draw(){
         if(paused) return;
-        timeCoin++;
-        timeMeteor++;
 
-        if(timeCoin%coinInterval == 0){
+        if(System.currentTimeMillis() >= coinInterval){
             Coin coin = spawnCoin();
             coin.setValue(coin.getValue() * game.getScore().getCoinsMultiplier());
-            coinInterval = maxCoinInterval + random.nextInt(-60,0);
-            timeCoin=0;
+            coinInterval = System.currentTimeMillis() + maxCoinInterval + random.nextDouble(-(500+1),500);
         }
-        if(timeMeteor%meteoriteInterval==0){
+        if(System.currentTimeMillis() >= meteoriteInterval){
             Meteorite meteor = spawnMeteor();
             meteor.setGravity(meteor.gravity * random.nextDouble(1,3 + game.getScore().getCoinsMultiplier()));
-            meteoriteInterval = maxMeteoriteInterval + random.nextInt(-30,-15);
-            timeMeteor=0;
+            meteoriteInterval = System.currentTimeMillis() + maxMeteoriteInterval + random.nextDouble(-(250+1),250);
         }
 
         if(System.currentTimeMillis() >= player.getSkillCooldown()){

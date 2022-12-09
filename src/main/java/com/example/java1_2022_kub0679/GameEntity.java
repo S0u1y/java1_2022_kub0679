@@ -62,16 +62,6 @@ public abstract class GameEntity implements Collidable, Simulable{
             ((GameEntityReadOnlyProperty)this.statusProperty()).set(var1);
         }
     }
-
-//    public void onChanged(){
-//        ((GameEntity.GameEntityReadOnlyProperty)this.statusProperty()).addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ObservableValue observableValue, Object o, Object t1) {
-//                System.out.println(observableValue.getValue()+" "+o+" "+t1);
-//            }
-//        });
-//    }
-
     private class GameEntityReadOnlyProperty<T> extends ReadOnlyObjectPropertyBase<T> {
         private final String name;
         private T value;
